@@ -1,0 +1,2 @@
+# jst
+JavaScript Template files
