@@ -1,0 +1,20 @@
+{
+  "name": "jst",
+  "version": "1.0.0",
+  "description": "JavaScript Templates",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SKYCRATE-ltd/jst.git"
+  },
+  "author": "Graham Robertson | SKYCRATE ltd",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/SKYCRATE-ltd/jst/issues"
+  },
+  "homepage": "https://github.com/SKYCRATE-ltd/jst#readme"
+}
