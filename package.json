@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/SKYCRATE-ltd/jst#readme",
   "dependencies": {
-    "config": "github:SKYCRATE-ltd/config",
-    "sys": "github:SKYCRATE-ltd/sys"
+    "config": "github:SKYCRATE-ltd/config"
   }
 }
