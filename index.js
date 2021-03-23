@@ -11,7 +11,11 @@ import {
 // const DIR = parent_dir(process.argv[1]);
 
 const jst = new JST();
-const [template_file = "test", input_file = "test.in", output_file = "test.out"] = process.argv.slice(2);
+const [
+	template_file = "test",
+	input_file = "test.in",
+	output_file = "test.out"
+] = process.argv.slice(2);
 
 async function main() {
 	const output = await jst.render(template_file, read(input_file));
