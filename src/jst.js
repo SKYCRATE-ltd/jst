@@ -70,44 +70,44 @@ const API = (JST, API = {}) => {
 const Async = Object.getPrototypeOf(async function() {}).constructor;
 
 export default class {
-	_api;
-	_dir = '.';
-	_ext = '';
-	_read = x => '';
-	_cache = false;
-	_files = {};
+	#api;
+	#dir = '.';
+	#ext = '';
+	#read = x => '';
+	#cache = false;
+	#files = {};
 
 	constructor(file_handler, directory = ".", cache = false, extension = ".jst") {
-		this._cache = cache;
-		this._api = API(this/*, {plugins}*/);
-		this._dir = directory.endsWith(SLASH) ?
+		this.#cache = cache;
+		this.#api = API(this/*, {plugins}*/);
+		this.#dir = directory.endsWith(SLASH) ?
 				directory.substr(0, directory.length - 1) : directory;
-		this._ext = extension;
-		this._read = file_handler;
+		this.#ext = extension;
+		this.#read = file_handler;
 	}
 
 	create(source, template = `return \`${source}\`;`) {
-		return (model = {}, context = {...model, ...this._api}) =>
+		return (model = {}, context = {...model, ...this.#api}) =>
 			new Async(...Object.keys(context), template)(...Object.values(context));
 	}
 
 	async open(file) {
-		if (this._files[file])
-			return this._files[file];
+		if (this.#files[file])
+			return this.#files[file];
 		
-		let source = await this._read((file.startsWith(SLASH) ? file :
-							`${this._dir}/${file}`) + this._ext);
+		let source = await this.#read((file.startsWith(SLASH) ? file :
+							`${this.#dir}/${file}`) + this.#ext);
 		
 		const template = this.create(source);
-		return this._cache ? this.cache(file, template) : template;
+		return this.#cache ? this.cache(file, template) : template;
 	}
 
 	async cache(uri, template) {
-		return this._files[uri] = template || await this.open(uri);
+		return this.#files[uri] = template || await this.open(uri);
 	}
 
 	clear(uri = undefined) {
-		return uri ? delete this._files[uri] : (this._files = {}) && true;
+		return uri ? delete this.#files[uri] : (this.#files = {}) && true;
 	}
 
 	async render(file, model = {}) {
@@ -115,11 +115,12 @@ export default class {
 	}
 
 	layout(layout_file, defaults = {}) {
-		return async (content_file, model) => await this.render(layout_file, view(
+		return async (content_file, model, defs = {}) => await this.render(layout_file, view(
 			model,
 			{
 				...defaults,
-				content: this.render(content_file, view(model))
+				...defs,
+				content: await this.render(content_file, view(model))
 			}));
 	}
 }
