@@ -1,4 +1,4 @@
-import JST from "./jst.js";
+import JST from "../index.js";
 
 const GET = 'GET';
 const OK = 200;
@@ -6,7 +6,7 @@ const OK = 200;
 function req(method, uri, data = null) {
 	return new Promise((resolve, reject) => {
 		const	req = new XMLHttpRequest();
-				req.responseType = data != null ? "json" : "text";
+				req.responseType = data !== null ? "json" : "text";
 				req.open(method, uri);
 				req.onload = e =>
 					req.status >= OK ?

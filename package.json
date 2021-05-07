@@ -16,8 +16,5 @@
   "bugs": {
     "url": "https://github.com/SKYCRATE-ltd/jst/issues"
   },
-  "homepage": "https://github.com/SKYCRATE-ltd/jst#readme",
-  "dependencies": {
-    "config": "github:SKYCRATE-ltd/config"
-  }
+  "homepage": "https://github.com/SKYCRATE-ltd/jst#readme"
 }

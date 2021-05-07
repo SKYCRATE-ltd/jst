@@ -1,7 +1,7 @@
 import path from "path";
 import util from "util";
 import {readFile} from "fs";
-import JST from "./jst.js";
+import JST from "../index.js";
 
 const read = util.promisify(readFile);
 
